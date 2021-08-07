@@ -1,9 +1,10 @@
 FROM node:alpine
-WORKDIR '/app'
-COPY package.json .
+RUN mkdir /app
+WORKDIR /app
+COPY package.json /app
 RUN npm install
-COPY . .
-CMD npm run build
+COPY . /app
+RUN npm run build
 
 FROM nginx
 EXPOSE 80
